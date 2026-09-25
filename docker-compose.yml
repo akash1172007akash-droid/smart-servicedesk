@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  # -------------------------------------------------------------
+  # MySQL Database Service
+  # -------------------------------------------------------------
+  mysql:
+    image: mysql:8.0
+    container_name: servicedesk-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: smart_servicedesk
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: servicedesk
+      MYSQL_PASSWORD: servicedeskpass
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # -------------------------------------------------------------
+  # Spring Boot Backend Service
+  # -------------------------------------------------------------
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: servicedesk-backend
+    restart: always
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/smart_servicedesk?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: servicedesk
+      SPRING_DATASOURCE_PASSWORD: servicedeskpass
+      JWT_SECRET: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      APP_UPLOAD_DIR: /app/uploads
+    ports:
+      - "8080:8080"
+    volumes:
+      - uploads_data:/app/uploads
+
+  # -------------------------------------------------------------
+  # React Frontend Service (Served via Nginx)
+  # -------------------------------------------------------------
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: servicedesk-frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+
+volumes:
+  mysql_data:
+  uploads_data:

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_URL || '/api',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -81,7 +81,8 @@ export const attachmentApi = {
       headers: { 'Content-Type': 'multipart/form-data' },
     }),
   getAttachments: (ticketId) => api.get(`/tickets/${ticketId}/attachments`),
-  getDownloadUrl: (ticketId, attachmentId) => `/api/tickets/${ticketId}/attachments/${attachmentId}/download`,
+  getDownloadUrl: (ticketId, attachmentId) =>
+    `${import.meta.env.VITE_API_URL || '/api'}/tickets/${ticketId}/attachments/${attachmentId}/download`,
 };
 
 // -------------------------------------------------------------
