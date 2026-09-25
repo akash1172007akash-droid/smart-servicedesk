@@ -1,10 +1,15 @@
 # Smart ServiceDesk – IT Issue Tracking & Resolution Platform
 
+[![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-success?style=flat&logo=github)](https://akash1172007akash-droid.github.io/smart-servicedesk/)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-black?style=flat&logo=github)](https://github.com/akash1172007akash-droid/smart-servicedesk)
+[![Build & Deploy](https://github.com/akash1172007akash-droid/smart-servicedesk/actions/workflows/deploy.yml/badge.svg)](https://github.com/akash1172007akash-droid/smart-servicedesk/actions/workflows/deploy.yml)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3.4-brightgreen.svg)](https://spring.io/projects/spring-boot)
 [![React](https://img.shields.io/badge/React-18.3-blue.svg)](https://reactjs.org/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0-orange.svg)](https://www.mysql.com/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4-38bdf8.svg)](https://tailwindcss.com/)
-[![License](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
+
+> 🌐 **Live GitHub Pages URL:** [https://akash1172007akash-droid.github.io/smart-servicedesk/](https://akash1172007akash-droid.github.io/smart-servicedesk/)
+> 📂 **GitHub Source Code:** [https://github.com/akash1172007akash-droid/smart-servicedesk](https://github.com/akash1172007akash-droid/smart-servicedesk)
 
 Smart ServiceDesk is a full-stack, enterprise-grade IT Service Management (ITSM) and issue resolution platform. Built to emulate internal service desks used at modern tech organizations (such as Jira Service Management and ServiceNow), it replaces ad-hoc email chains and spreadsheets with a structured, role-governed ticket lifecycle, complete audit trails, rich data visualizations, and robust authentication.
 
